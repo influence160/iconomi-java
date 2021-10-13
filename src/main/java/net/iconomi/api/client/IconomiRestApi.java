@@ -1,9 +1,6 @@
 package net.iconomi.api.client;
 
-import net.iconomi.api.client.model.Balance;
-import net.iconomi.api.client.model.Daa;
-import net.iconomi.api.client.model.DaaChart;
-import net.iconomi.api.client.model.StructureElement;
+import net.iconomi.api.client.model.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -14,32 +11,37 @@ public interface IconomiRestApi {
     /**
      * @return List of daas
      */
-    List<Daa> getDaaList() throws IOException;
+    List<Strategy> getStrategiesList() throws IOException;
 
     /**
      * @param ticker name of digital portfolio
-     * @return {@link Daa} with information about digital portfolio
+     * @return {@link Strategy} with information about digital portfolio
      */
-    Daa getDaa(String ticker) throws IOException;
+    Strategy getStrategy(String ticker) throws IOException;
 
     /**
      * @param ticker name of daa
-     * @return structure of Daa
+     * @return structure of Strategy
      */
-    List<StructureElement> getDaaStructure(String ticker) throws IOException;
+    Structure getStrategyStructure(String ticker) throws IOException;
 
     /**
      * @param ticker name of daa
      * @return price
      */
-    BigDecimal getDaaPrice(String ticker) throws IOException;
+    BigDecimal getStrategyPrice(String ticker) throws IOException;
 
+    /**
+     * @param ticker name of daa
+     * @return @link Ticker} with informations about price and price changes
+     */
+    Ticker getStrategyPriceChanges(String ticker) throws IOException;
 
     /**
      * @param ticker name of daa
      * @return price history
      */
-    DaaChart getDaaPriceHistry(String ticker, long from, long to) throws IOException;
+    Chart getStrategyPriceHistry(String ticker, long from, long to) throws IOException;
 
     /**
      * Returns balance for user that is logged in via api key

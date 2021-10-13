@@ -43,4 +43,14 @@ public class BalanceEntry {
     public BigDecimal getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "BalanceEntry{" +
+                "name='" + name + '\'' +
+                ", ticker=" + ticker +
+                ", balance='" + balance + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

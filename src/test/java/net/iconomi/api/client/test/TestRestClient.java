@@ -2,10 +2,7 @@ package net.iconomi.api.client.test;
 
 import net.iconomi.api.client.IconomiApiBuilder;
 import net.iconomi.api.client.IconomiRestApi;
-import net.iconomi.api.client.model.Balance;
-import net.iconomi.api.client.model.Daa;
-import net.iconomi.api.client.model.DaaChart;
-import net.iconomi.api.client.model.StructureElement;
+import net.iconomi.api.client.model.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -32,20 +29,20 @@ public class TestRestClient {
 
     @Test
     public void testApi() throws IOException {
-        for (Daa ticker : api.getDaaList()) {
-            Daa daa = api.getDaa(ticker.getTicker());
+        for (Strategy ticker : api.getStrategiesList()) {
+            Strategy strategy = api.getStrategy(ticker.getTicker());
 
-            List<StructureElement> structure = api.getDaaStructure(daa.getTicker());
+            Structure structure = api.getStrategyStructure(strategy.getTicker());
             assertNotNull(structure);
-            System.out.println(String.format("for ticker: '%s' got: '%s', structure: %s", ticker.getTicker(), daa.getName(), structure));
+            System.out.println(String.format("for ticker: '%s' got: '%s', structure: %s", ticker.getTicker(), strategy.getName(), structure));
             try {
-                BigDecimal price = api.getDaaPrice(ticker.getTicker());
+                BigDecimal price = api.getStrategyPrice(ticker.getTicker());
                 assertNotNull(price);
                 System.out.println(String.format("for ticker: '%s' got price: %s", ticker.getTicker(), price));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            DaaChart chart = api.getDaaPriceHistry(daa.getTicker(), Instant.now().minus(10, ChronoUnit.DAYS).toEpochMilli(), Instant.now().minus(10, ChronoUnit.DAYS).toEpochMilli());
+            Chart chart = api.getStrategyPriceHistry(strategy.getTicker(), Instant.now().minus(10, ChronoUnit.DAYS).toEpochMilli(), Instant.now().minus(10, ChronoUnit.DAYS).toEpochMilli());
             assertNotNull(chart, "history cannot be null");
         }
     }

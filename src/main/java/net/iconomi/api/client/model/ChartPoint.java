@@ -5,7 +5,7 @@ package net.iconomi.api.client.model;
  *
  * @author Tomaž Cerar
  */
-public class DaaChartPoint {
+public class ChartPoint {
 
     private Long x;
     private String y;
@@ -24,5 +24,13 @@ public class DaaChartPoint {
 
     public void setY(String y) {
         this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "ChartPoint{" +
+                "x='" + x + '\'' +
+                ", y=" + y +
+                '}';
     }
 }

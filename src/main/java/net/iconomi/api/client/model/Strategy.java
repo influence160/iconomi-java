@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  *
  * @author Tomaž Cerar
  */
-public class Daa {
+public class Strategy {
     private String ticker;
     private String name;
     private String manager;
@@ -15,10 +15,10 @@ public class Daa {
     private String managementType;
     private BigDecimal managementFee;
     private BigDecimal performanceFee;
+    private String performanceFeeCollectionPeriod;
     private BigDecimal entryFee;
     private BigDecimal exitFee;
-    private BigDecimal aum;
-    private String currency;
+    private Integer followers;
 
     public String getTicker() {
         return ticker;
@@ -76,6 +76,14 @@ public class Daa {
         this.performanceFee = performanceFee;
     }
 
+    public String getPerformanceFeeCollectionPeriod() {
+        return performanceFeeCollectionPeriod;
+    }
+
+    public void setPerformanceFeeCollectionPeriod(String performanceFeeCollectionPeriod) {
+        this.performanceFeeCollectionPeriod = performanceFeeCollectionPeriod;
+    }
+
     public BigDecimal getEntryFee() {
         return entryFee;
     }
@@ -92,21 +100,28 @@ public class Daa {
         this.exitFee = exitFee;
     }
 
-    public BigDecimal getAum() {
-        return aum;
+    public Integer getFollowers() {
+        return followers;
     }
 
-    public void setAum(BigDecimal aum) {
-        this.aum = aum;
+    public void setFollowers(Integer followers) {
+        this.followers = followers;
     }
 
-    public String getCurrency() {
-        return currency;
+    @Override
+    public String toString() {
+        return "Strategy{" +
+                "ticker='" + ticker + '\'' +
+                ", name=" + name +
+                ", manager='" + manager + '\'' +
+                ", type='" + type + '\'' +
+                ", managementType='" + managementType + '\'' +
+                ", managementFee='" + managementFee + '\'' +
+                ", performanceFee='" + performanceFee + '\'' +
+                ", performanceFeeCollectionPeriod='" + performanceFeeCollectionPeriod + '\'' +
+                ", entryFee='" + entryFee + '\'' +
+                ", exitFee='" + exitFee + '\'' +
+                ", followers='" + followers + '\'' +
+                '}';
     }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-
 }

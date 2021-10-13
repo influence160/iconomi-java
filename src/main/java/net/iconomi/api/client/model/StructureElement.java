@@ -14,6 +14,7 @@ public class StructureElement {
     private String assetTicker;
     private String assetName;
     private String assetCategory;
+    private BigDecimal estimatedProfit;
 
     public BigDecimal getRebalancedWeight() {
         return rebalancedWeight;
@@ -55,6 +56,14 @@ public class StructureElement {
         this.assetCategory = assetCategory;
     }
 
+    public BigDecimal getEstimatedProfit() {
+        return estimatedProfit;
+    }
+
+    public void setEstimatedProfit(BigDecimal estimatedProfit) {
+        this.estimatedProfit = estimatedProfit;
+    }
+
     @Override
     public String toString() {
         return "StructureElement{" +
@@ -63,6 +72,7 @@ public class StructureElement {
                 ", assetName='" + assetName + '\'' +
                 ", targetWeight=" + targetWeight +
                 ", assetCategory='" + assetCategory + '\'' +
+                ", estimatedProfit='" + estimatedProfit + '\'' +
                 '}';
     }
 }

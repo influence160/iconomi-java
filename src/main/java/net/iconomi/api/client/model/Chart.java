@@ -7,14 +7,14 @@ import java.util.List;
  *
  * @author Tomaž Cerar
  */
-public class DaaChart {
+public class Chart {
 
     private String ticker;
     private String currency;
     private long from;
     private long to;
     private String granulation;
-    private List<DaaChartPoint> values;
+    private List<ChartPoint> values;
 
     public String getTicker() {
         return ticker;
@@ -56,11 +56,23 @@ public class DaaChart {
         this.granulation = granulation;
     }
 
-    public List<DaaChartPoint> getValues() {
+    public List<ChartPoint> getValues() {
         return values;
     }
 
-    public void setValues(List<DaaChartPoint> values) {
+    public void setValues(List<ChartPoint> values) {
         this.values = values;
+    }
+
+    @Override
+    public String toString() {
+        return "Chart{" +
+                "ticker='" + ticker + '\'' +
+                ", currency=" + currency +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", granulation='" + granulation + '\'' +
+                ", values='" + values + '\'' +
+                '}';
     }
 }

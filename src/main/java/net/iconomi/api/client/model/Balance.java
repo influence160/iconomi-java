@@ -35,4 +35,13 @@ public class Balance {
     public void setAssetList(List<BalanceEntry> assetList) {
         this.assetList = assetList;
     }
+
+    @Override
+    public String toString() {
+        return "Balance{" +
+                "currency='" + currency + '\'' +
+                ", daaList=" + daaList +
+                ", assetList='" + assetList + '\'' +
+                '}';
+    }
 }

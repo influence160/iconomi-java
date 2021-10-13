@@ -1,11 +1,10 @@
 package net.iconomi.api.client;
 
 import net.iconomi.api.client.model.Balance;
-import net.iconomi.api.client.model.Daa;
-import net.iconomi.api.client.model.DaaChart;
-import net.iconomi.api.client.model.DaaList;
-import net.iconomi.api.client.model.DaaPrice;
-import net.iconomi.api.client.model.DaaStructure;
+import net.iconomi.api.client.model.Strategy;
+import net.iconomi.api.client.model.Chart;
+import net.iconomi.api.client.model.Ticker;
+import net.iconomi.api.client.model.Structure;
 import net.iconomi.api.client.model.StructureElement;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -51,41 +50,37 @@ class IconomiRestApiImpl implements IconomiRestApi {
     }
 
     @Override
-    public List<Daa> getDaaList() throws IOException {
-        DaaList res = service.listDaa().execute().body();
-        if (res == null) {
-            return null;
-        }
-        return res.getDaaList();
-
+    public List<Strategy> getStrategiesList() throws IOException {
+        return service.listStrategies().execute().body();
     }
 
     @Override
-    public Daa getDaa(String ticker) throws IOException {
-        return service.getDaa(ticker).execute().body();
+    public Strategy getStrategy(String ticker) throws IOException {
+        return service.getStrategy(ticker).execute().body();
     }
 
     @Override
-    public List<StructureElement> getDaaStructure(String ticker) throws IOException {
-        DaaStructure res = service.getDaaStructure(ticker).execute().body();
-        if (res == null) {
-            return null;
-        }
-        return res.getValues();
+    public Structure getStrategyStructure(String ticker) throws IOException {
+        return service.getStrategyStructure(ticker).execute().body();
     }
 
     @Override
-    public DaaChart getDaaPriceHistry(String ticker, long from, long to) throws IOException {
-        return service.getDaaPriceHistory(ticker, from, to).execute().body();
+    public Chart getStrategyPriceHistry(String ticker, long from, long to) throws IOException {
+        return service.getStrategyPriceHistory(ticker, from, to).execute().body();
     }
 
     @Override
-    public BigDecimal getDaaPrice(String ticker) throws IOException {
-        DaaPrice daaPrice = service.getDaaPrice(ticker).execute().body();
+    public BigDecimal getStrategyPrice(String ticker) throws IOException {
+        Ticker daaPrice = service.getStrategyPrice(ticker).execute().body();
         if (daaPrice != null) {
             return daaPrice.getPrice();
         }
         return null;
+    }
+
+    @Override
+    public Ticker getStrategyPriceChanges(String ticker) throws IOException {
+        return service.getStrategyPrice(ticker).execute().body();
     }
 
     @Override
