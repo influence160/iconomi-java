@@ -9,6 +9,42 @@ import java.util.List;
 public interface IconomiRestApi {
 
     /**
+     * @return list of assets
+     */
+    List<Asset> getListAssets() throws IOException;
+
+    /**
+     * @param ticker Ticker of asset
+     * @return {@link AssetInfo} with information about the Asset.
+     */
+    AssetInfo getAssetDetails(String ticker) throws IOException;
+
+    /**
+     * @param ticker name of asset
+     * @return @link Ticker} with informations about price and price changes in USD
+     */
+    Ticker getAssetPriceChanges(String ticker) throws IOException;
+
+    /**
+     * @param ticker name of asset
+     * @param currency Currency in which the values are returned
+     * @return @link Ticker} with informations about price and price changes
+     */
+    Ticker getAssetPriceChanges(String ticker, Currency currency) throws IOException;
+
+    /**
+     * @param ticker name of asset
+     * @return price history in USD
+     */
+    Chart getAssetPriceHistry(String ticker, long from, long to) throws IOException;
+
+    /**
+     * @param ticker name of asset
+     * @return price history
+     */
+    Chart getAssetPriceHistry(String ticker, Currency currency, long from, long to, Chart.Granulation granulation) throws IOException;
+
+    /**
      * @return List of daas
      */
     List<Strategy> getStrategiesList() throws IOException;

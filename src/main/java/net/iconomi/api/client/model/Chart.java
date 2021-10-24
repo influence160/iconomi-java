@@ -9,11 +9,21 @@ import java.util.List;
  */
 public class Chart {
 
+    public static enum Granulation {
+        TWO_MINUTE,
+        FIVE_MINUTE,
+        FIFTEEN_MINUTE,
+        HOURLY,
+        THREE_HOURLY,
+        EIGHT_HOURLY,
+        DAILY
+    }
+
     private String ticker;
-    private String currency;
+    private Currency currency;
     private long from;
     private long to;
-    private String granulation;
+    private Granulation granulation;
     private List<ChartPoint> values;
 
     public String getTicker() {
@@ -24,11 +34,11 @@ public class Chart {
         this.ticker = ticker;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 
@@ -48,11 +58,11 @@ public class Chart {
         this.to = to;
     }
 
-    public String getGranulation() {
+    public Granulation getGranulation() {
         return granulation;
     }
 
-    public void setGranulation(String granulation) {
+    public void setGranulation(Granulation granulation) {
         this.granulation = granulation;
     }
 

@@ -1,11 +1,6 @@
 package net.iconomi.api.client;
 
-import net.iconomi.api.client.model.Balance;
-import net.iconomi.api.client.model.Strategy;
-import net.iconomi.api.client.model.Chart;
-import net.iconomi.api.client.model.Ticker;
-import net.iconomi.api.client.model.Structure;
-import net.iconomi.api.client.model.StructureElement;
+import net.iconomi.api.client.model.*;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -47,6 +42,36 @@ class IconomiRestApiImpl implements IconomiRestApi {
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
         service = retrofit.create(IconomiService.class);
+    }
+
+    @Override
+    public List<Asset> getListAssets() throws IOException {
+        return service.listAssets().execute().body();
+    }
+
+    @Override
+    public AssetInfo getAssetDetails(String ticker) throws IOException {
+        return service.getAssetDetails(ticker).execute().body();
+    }
+
+    @Override
+    public Ticker getAssetPriceChanges(String ticker) throws IOException {
+        return service.getAssetPrice(ticker).execute().body();
+    }
+
+    @Override
+    public Ticker getAssetPriceChanges(String ticker, Currency currency) throws IOException {
+        return service.getAssetPrice(ticker, currency).execute().body();
+    }
+
+    @Override
+    public Chart getAssetPriceHistry(String ticker, long from, long to) throws IOException {
+        return service.getAssetPriceHistory(ticker, from, to).execute().body();
+    }
+
+    @Override
+    public Chart getAssetPriceHistry(String ticker, Currency currency, long from, long to, Chart.Granulation granulation) throws IOException {
+        return service.getAssetPriceHistory(ticker, currency, from, to, granulation).execute().body();
     }
 
     @Override
