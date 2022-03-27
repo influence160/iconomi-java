@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.List;
@@ -34,6 +35,8 @@ class IconomiRestApiImpl implements IconomiRestApi {
         this.apiKey = builder.apiKey;
         this.apiSecret = builder.apiSecret;
         OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(Duration.ofSeconds(60))
+                .readTimeout(Duration.ofSeconds(60))
                 .addInterceptor(this::addAuthHeaders)
                 .build();
         retrofit = new Retrofit.Builder()
